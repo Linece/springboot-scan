@@ -5,7 +5,7 @@ import com.zdc.scan.enums.DocumentType;
 import com.zdc.scan.inter.OdfSchedule;
 
 @OdfBean(documentTypes = {DocumentType.DT_SCHEDULE_UPDATE,DocumentType.DT_SCHEDULE})
-public class BusiService implements OdfSchedule {
+public class BusiService{
 
 	public void aa(){
 		System.out.println("#################");

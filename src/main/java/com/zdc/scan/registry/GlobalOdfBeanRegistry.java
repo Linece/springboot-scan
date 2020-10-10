@@ -72,15 +72,16 @@ public class GlobalOdfBeanRegistry implements ImportBeanDefinitionRegistrar,Reso
      * @date 2020年08月14日 14:53
      */
     void registerBeanDefinitions(AnnotationAttributes attributes,BeanDefinitionRegistry registry){
-        BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(OdfScannerConfigurer.class);
+        //BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(OdfScannerConfigurer.class);
         List<String> basePackages = new ArrayList<>();
         basePackages.addAll(
                 Arrays.stream(attributes.getStringArray("value")).filter(StringUtils::hasText).collect(Collectors.toList()));
 
         basePackages.addAll(Arrays.stream(attributes.getStringArray("scanPackages")).filter(StringUtils::hasText)
                 .collect(Collectors.toList()));
-         builder.addPropertyValue("basePackage", StringUtils.collectionToCommaDelimitedString(basePackages));
+         //builder.addPropertyValue("basePackage", StringUtils.collectionToCommaDelimitedString(basePackages));
         OdfClasspathScanner scan = new OdfClasspathScanner(registry);
+
         scan.setBeanNameGenerator(( beanDefinition,beanDefinitionRegistry)->{
             String beanClassName = beanDefinition.getBeanClassName();
             try {
@@ -99,9 +100,6 @@ public class GlobalOdfBeanRegistry implements ImportBeanDefinitionRegistrar,Reso
                 return null;
             }
         });
-        if(resourceLoader != null){
-            scan.setResourceLoader(resourceLoader);
-        }
         scan.doScan(StringUtils.toStringArray(basePackages));
 
          //registry.registerBeanDefinition("aaaaaaaaaaaaaa", builder.getBeanDefinition());

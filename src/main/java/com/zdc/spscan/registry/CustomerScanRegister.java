@@ -72,9 +72,9 @@ public class CustomerScanRegister implements ImportBeanDefinitionRegistrar, Reso
 				return null;
 			}
 		});
-		if(resourceLoader != null){
-			scanner.setResourceLoader(resourceLoader);
-		}
+//		if(resourceLoader != null){
+//			scanner.setResourceLoader(resourceLoader);
+//		}
 
 		return scanner.doScan(StringUtils.toStringArray(basePackages));
 	}
